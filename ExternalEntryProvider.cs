@@ -10,6 +10,15 @@ namespace Sitefinity.ExternalDataModel
 {
     public class ExternalEntryProvider : DataProviderBase, IOpenAccessDataProvider, IOpenAccessUpgradableProvider
     {
+        #region Public
+        public static readonly string DefaultApplicationName = "/ExternalEntryProvider";  
+
+        public string ProviderName
+        {
+            get { return _providerName; }
+            set { _providerName = value; }
+        }
+
         public ExternalEntry CreateExternalEntry()
         {
             return this.CreateExternalEntry(this.GetNewGuid());
@@ -55,32 +64,14 @@ namespace Sitefinity.ExternalDataModel
             ExternalEntry item = this.GetExternalEntry(id);
             this.GetContext().Remove(item);
         }
-
-        public string ProviderName
-        {
-            get { return _providerName; }
-            set { _providerName = value; }
-        }
-
-        private ManagerInfo ManagerInfo
-        {
-            get
-            {
-                return _managerInfo ?? (_managerInfo = new ManagerInfo()
-                {
-                    ProviderName = this.ProviderName,
-                    ManagerType = typeof(ExternalEntryManager).Name,
-                    ApplicationName = this.ApplicationName
-                });
-            }
-        }
+        #endregion
 
         #region Overridden
         public override string ApplicationName
         {
             get
             {
-                return "/ExternalEntryProvider";
+                return ExternalEntryProvider.DefaultApplicationName;
             }
         }
         #endregion
@@ -118,17 +109,14 @@ namespace Sitefinity.ExternalDataModel
         }
         #endregion
 
-        private static Type[] knownTypes;
-        private ManagerInfo _managerInfo;
-        private string _providerName = "ExternalEntryProvider";
-        // TODO: refactor these static strings
-        public static string DefaultProvider = "ExternalEntryProvider";
-        public static string DefaultApplicationName = "ExternalEntryProvider";
-
+        #region IOpenAccessUpgradableProvider
+        /// <summary>
+        /// Returns the current schema version. Increment this number if changes to the schema are introduced.
+        /// </summary>
         public int CurrentSchemaVersionNumber
         {
-            get 
-            { 
+            get
+            {
                 return 2;
             }
         }
@@ -140,5 +128,25 @@ namespace Sitefinity.ExternalDataModel
         public void OnUpgrading(UpgradingContext context, int upgradingFromSchemaVersionNumber)
         {
         }
+        #endregion
+
+        #region Private members
+        private ManagerInfo ManagerInfo
+        {
+            get
+            {
+                return _managerInfo ?? (_managerInfo = new ManagerInfo()
+                {
+                    ProviderName = this.ProviderName,
+                    ManagerType = typeof(ExternalEntryManager).Name,
+                    ApplicationName = this.ApplicationName
+                });
+            }
+        }
+
+        private static Type[] knownTypes;
+        private ManagerInfo _managerInfo;
+        private string _providerName = "ExternalEntryProvider";
+        #endregion
     }
 }

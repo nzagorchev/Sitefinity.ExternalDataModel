@@ -28,7 +28,7 @@ namespace Sitefinity.ExternalDataModel
         {
             get
             {
-                return () => ExternalEntryProvider.DefaultProvider;
+                return () => ExternalEntryManager.DefaultProvider;
             }
         }
 
@@ -45,6 +45,7 @@ namespace Sitefinity.ExternalDataModel
             }
         }
 
-        public static string DefaultModuleName = "ExternalEntries";
+        public static readonly string DefaultModuleName = "ExternalEntries";
+        public static readonly string DefaultProvider = "ExternalEntryProvider";
     }
 }

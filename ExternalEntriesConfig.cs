@@ -8,7 +8,7 @@ namespace Sitefinity.ExternalDataModel
         {
             providers.Add(new Telerik.Sitefinity.Configuration.DataProviderSettings(providers)
             {
-                Name = ExternalEntryProvider.DefaultProvider,
+                Name = ExternalEntryManager.DefaultProvider,
                 Title = string.Format("Default {0}", ExternalEntryManager.DefaultModuleName),
                 ProviderType = typeof(ExternalEntryProvider),
                 Parameters = new System.Collections.Specialized.NameValueCollection() { { "applicationName", ExternalEntryProvider.DefaultApplicationName } }
