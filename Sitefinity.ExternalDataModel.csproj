@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExternalEntriesConfig.cs" />
     <Compile Include="ExternalEntry.cs" />
     <Compile Include="ExternalEntryFluentMapping.cs" />
     <Compile Include="ExternalEntryManager.cs" />
