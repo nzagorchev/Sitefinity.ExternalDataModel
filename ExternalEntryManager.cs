@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telerik.Sitefinity.Configuration;
-using Telerik.Sitefinity.Data;
+﻿using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Modules.GenericContent.Configuration;
 
 namespace Sitefinity.ExternalDataModel
@@ -25,11 +19,6 @@ namespace Sitefinity.ExternalDataModel
         {
             return ManagerBase<ExternalEntryProvider>.GetManager<ExternalEntryManager>();
         }
-
-        //public static ExternalEntryManager GetManager(string providerName, string transactionName)
-        //{
-        //    return ManagerBase<ExternalEntryProvider>.GetManager<ExternalEntryManager>(providerName, transactionName);
-        //}
 
         public static ExternalEntryManager GetManager(string providerName)
         {
@@ -54,7 +43,6 @@ namespace Sitefinity.ExternalDataModel
             get
             {
                 return new ExternalEntriesConfig().Providers;
-              //  return Config.Get<ExternalEntriesConfig>().Providers;
             }
         }
 

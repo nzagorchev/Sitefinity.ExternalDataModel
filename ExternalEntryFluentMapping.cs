@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.Sitefinity;
 using Telerik.Sitefinity.Model;
